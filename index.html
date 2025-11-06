@@ -4,129 +4,473 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy Birthday Sara 🎉</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&family=Montserrat:wght@200;300;400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.0/dist/confetti.browser.min.js"></script>
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1a1a1a, #2d1b2e, #1a1a1a);
-      color: #fff;
+    * {
       margin: 0;
       padding: 0;
-      text-align: center;
-      overflow-x: hidden;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #000;
+      color: #fff;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Animated gradient background */
+    .gradient-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, #1a0033, #330033, #4d0066, #1a0033);
+      background-size: 400% 400%;
+      animation: gradientFlow 15s ease infinite;
+      z-index: 1;
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.6;
+      animation: float 20s infinite ease-in-out;
+      z-index: 2;
+    }
+
+    .orb1 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255, 107, 157, 0.8), transparent);
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .orb2 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(186, 85, 211, 0.8), transparent);
+      bottom: 20%;
+      right: 10%;
+      animation-delay: 5s;
+    }
+
+    .orb3 {
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(255, 140, 200, 0.6), transparent);
+      top: 50%;
+      left: 50%;
+      animation-delay: 10s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(50px, -50px) scale(1.1); }
+      50% { transform: translate(-30px, 50px) scale(0.9); }
+      75% { transform: translate(40px, 30px) scale(1.05); }
+    }
+
+    /* Sparkle particles */
+    .sparkles {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 6px white;
+      animation: sparkle 3s infinite ease-in-out;
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+
+    /* Main container */
+    .container {
+      position: relative;
+      z-index: 10;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 40px 20px;
     }
 
-    header {
-      padding: 50px 20px;
+    .card {
+      max-width: 1000px;
       width: 100%;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(40px) saturate(180%);
+      border-radius: 40px;
+      padding: 80px 60px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5),
+                  0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+                  0 0 100px rgba(255, 107, 157, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        rgba(255, 107, 157, 0.1) 90deg,
+        transparent 180deg,
+        rgba(186, 85, 211, 0.1) 270deg,
+        transparent 360deg
+      );
+      animation: rotate 10s linear infinite;
+    }
+
+    @keyframes rotate {
+      100% { transform: rotate(360deg); }
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    /* Typography */
+    .emoji-container {
+      font-size: 5rem;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .emoji {
+      display: inline-block;
+      animation: emojiFloat 3s ease-in-out infinite;
+      filter: drop-shadow(0 10px 30px rgba(255, 107, 157, 0.5));
+    }
+
+    .emoji:nth-child(1) { animation-delay: 0s; }
+    .emoji:nth-child(2) { animation-delay: 0.3s; }
+
+    @keyframes emojiFloat {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-20px) rotate(-8deg); }
+      50% { transform: translateY(-10px) rotate(0deg); }
+      75% { transform: translateY(-15px) rotate(8deg); }
     }
 
     h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-      background: linear-gradient(45deg, #ff6b9d, #ffc1e3);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      line-height: 1.1;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, 
+        #ff6b9d 0%, 
+        #ffc1e3 25%,
+        #ff8fb3 50%,
+        #ba55d3 75%,
+        #ff6b9d 100%);
+      background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      animation: shimmer 4s linear infinite;
+      text-shadow: 0 0 80px rgba(255, 107, 157, 0.5);
+      position: relative;
     }
 
-    h1 .emoji {
-      -webkit-text-fill-color: initial;
-      background: none;
+    @keyframes shimmer {
+      to { background-position: 200% center; }
     }
 
     h2 {
       font-size: 1.2rem;
-      font-weight: 400;
-      margin-bottom: 30px;
-      color: #ffc1e3;
+      font-weight: 300;
+      margin-bottom: 60px;
+      color: rgba(255, 193, 227, 0.9);
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeIn 1s ease 0.5s forwards;
     }
 
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Countdown */
     .countdown {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      font-size: 1.5rem;
-      margin-bottom: 40px;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 30px;
+      max-width: 700px;
+      margin: 0 auto;
+      opacity: 0;
+      animation: fadeInUp 1s ease 0.8s forwards;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .time-box {
-      background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
-      padding: 20px 30px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(255, 107, 157, 0.3);
-      min-width: 90px;
-      border: 2px solid #ff6b9d;
-      animation: pulse 2s ease-in-out infinite;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      padding: 40px 20px;
+      border-radius: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
     }
 
-    .time-box span:first-child {
-      color: #ff6b9d;
-      font-weight: 600;
-      font-size: 2rem;
+    .time-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 25px;
+      padding: 2px;
+      background: linear-gradient(135deg, rgba(255, 107, 157, 0.5), rgba(186, 85, 211, 0.5));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s;
     }
 
-    @keyframes pulse {
-      0%, 100% { 
-        transform: scale(1);
-        box-shadow: 0 8px 20px rgba(255, 107, 157, 0.3);
+    .time-box:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4);
+    }
+
+    .time-box:hover::before {
+      opacity: 1;
+    }
+
+    .time-value {
+      font-size: 3.5rem;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #ff6b9d, #ffc1e3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-variant-numeric: tabular-nums;
+      text-shadow: 0 0 30px rgba(255, 107, 157, 0.5);
+      position: relative;
+    }
+
+    .time-label {
+      font-size: 0.85rem;
+      color: rgba(255, 193, 227, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 300;
+    }
+
+    /* Celebration state */
+    .celebration {
+      animation: celebrationZoom 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes celebrationZoom {
+      0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
       }
-      50% { 
-        transform: scale(1.05);
-        box-shadow: 0 8px 30px rgba(255, 107, 157, 0.5);
+      60% {
+        transform: scale(1.15) rotate(5deg);
+      }
+      100% {
+        transform: scale(1) rotate(0);
+        opacity: 1;
       }
     }
 
-    .label {
-      font-size: 0.9rem;
+    .celebration-message {
+      font-size: 1.8rem;
+      font-weight: 300;
       color: #ffc1e3;
+      margin-top: 40px;
+      letter-spacing: 2px;
+      line-height: 1.6;
+      animation: fadeInUp 1s ease 0.5s both;
     }
 
-    .celebration-header {
-      animation: bounceIn 1s ease;
+    .celebration-hearts {
+      font-size: 3rem;
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      animation: fadeInUp 1s ease 1s both;
     }
 
-    @keyframes bounceIn {
-      0% { transform: scale(0); opacity: 0; }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); opacity: 1; }
+    .heart {
+      display: inline-block;
+      animation: heartBeat 1.5s ease-in-out infinite;
     }
 
-    @media (max-width: 600px) {
-      h1 { font-size: 2rem; }
-      .countdown { gap: 10px; }
-      .time-box { padding: 10px 15px; }
+    .heart:nth-child(2) { animation-delay: 0.2s; }
+    .heart:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.2); }
+      50% { transform: scale(1); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .card {
+        padding: 60px 30px;
+        border-radius: 30px;
+      }
+
+      .emoji-container {
+        font-size: 3.5rem;
+        gap: 20px;
+      }
+
+      h1 {
+        font-size: 3rem;
+        letter-spacing: 2px;
+      }
+
+      h2 {
+        font-size: 0.9rem;
+        letter-spacing: 5px;
+      }
+
+      .countdown {
+        gap: 20px;
+      }
+
+      .time-box {
+        padding: 30px 15px;
+      }
+
+      .time-value {
+        font-size: 2.5rem;
+      }
+
+      .time-label {
+        font-size: 0.75rem;
+      }
+
+      .celebration-message {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 40px 20px;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .countdown {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .time-value {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="gradient-bg"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="sparkles" id="sparkles"></div>
 
-  <header>
-    <h1><span class="emoji">🎂</span> Happy Birthday, Sara! <span class="emoji">🎉</span></h1>
-    <h2>Countdown to your special day</h2>
-    <div class="countdown">
-      <div class="time-box">
-        <span id="days">00</span><br><span class="label">Days</span>
-      </div>
-      <div class="time-box">
-        <span id="hours">00</span><br><span class="label">Hours</span>
-      </div>
-      <div class="time-box">
-        <span id="minutes">00</span><br><span class="label">Minutes</span>
-      </div>
-      <div class="time-box">
-        <span id="seconds">00</span><br><span class="label">Seconds</span>
+  <div class="container">
+    <div class="card">
+      <div class="card-content">
+        <div class="emoji-container">
+          <span class="emoji">🎂</span>
+          <span class="emoji">🎉</span>
+        </div>
+        <h1>Happy Birthday, Sara!</h1>
+        <h2>Countdown to Your Special Day</h2>
+        <div class="countdown">
+          <div class="time-box">
+            <span class="time-value" id="days">00</span>
+            <span class="time-label">Days</span>
+          </div>
+          <div class="time-box">
+            <span class="time-value" id="hours">00</span>
+            <span class="time-label">Hours</span>
+          </div>
+          <div class="time-box">
+            <span class="time-value" id="minutes">00</span>
+            <span class="time-label">Minutes</span>
+          </div>
+          <div class="time-box">
+            <span class="time-value" id="seconds">00</span>
+            <span class="time-label">Seconds</span>
+          </div>
+        </div>
       </div>
     </div>
-  </header>
+  </div>
 
   <script>
+    // Create sparkles
+    function createSparkles() {
+      const container = document.getElementById('sparkles');
+      for (let i = 0; i < 40; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = Math.random() * 100 + '%';
+        sparkle.style.top = Math.random() * 100 + '%';
+        sparkle.style.animationDelay = Math.random() * 3 + 's';
+        sparkle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        container.appendChild(sparkle);
+      }
+    }
+    createSparkles();
+
+    // Countdown timer
     const timer = setInterval(updateCountdown, 1000);
     updateCountdown();
 
@@ -147,37 +491,95 @@
 
       if (diff <= 0) {
         clearInterval(timer);
-        document.querySelector("header").innerHTML = `
-          <h1 class="celebration-header"><span class="emoji">🎉</span> Happy Birthday Sara! <span class="emoji">🎂</span></h1>
-          <h2 class="celebration-header">It's your special day! 💖</h2>
-        `;
-        launchConfetti();
+        celebrate();
       }
     }
 
+    function celebrate() {
+      document.querySelector(".card-content").innerHTML = `
+        <div class="emoji-container celebration">
+          <span class="emoji">🎉</span>
+          <span class="emoji">🎂</span>
+        </div>
+        <h1 class="celebration">Happy Birthday, Sara!</h1>
+        <p class="celebration-message">
+          Wishing you a day filled with love, laughter,<br>
+          and unforgettable moments! ✨
+        </p>
+        <div class="celebration-hearts">
+          <span class="heart">💖</span>
+          <span class="heart">💝</span>
+          <span class="heart">💗</span>
+        </div>
+      `;
+      
+      launchConfetti();
+    }
+
     function launchConfetti() {
-      const duration = 5000;
+      const duration = 10000;
       const end = Date.now() + duration;
-      const colors = ['#ff6b9d', '#ffc1e3', '#ff8fb3', '#ffaac9'];
+      const colors = ['#ff6b9d', '#ffc1e3', '#ff8fb3', '#ffaac9', '#ba55d3', '#dda0dd'];
+
       (function frame() {
+        // Left side
         confetti({
-          particleCount: 4,
+          particleCount: 3,
           angle: 60,
           spread: 55,
-          origin: { x: 0 },
+          origin: { x: 0, y: 0.7 },
+          colors: colors,
+          gravity: 1.2,
+          scalar: 1.2
+        });
+        
+        // Right side
+        confetti({
+          particleCount: 3,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1, y: 0.7 },
+          colors: colors,
+          gravity: 1.2,
+          scalar: 1.2
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+
+      // Center burst
+      setTimeout(() => {
+        confetti({
+          particleCount: 120,
+          spread: 100,
+          origin: { y: 0.6 },
+          colors: colors,
+          shapes: ['circle', 'square'],
+          gravity: 0.8,
+          scalar: 1.3
+        });
+      }, 500);
+
+      // Additional bursts
+      setTimeout(() => {
+        confetti({
+          particleCount: 80,
+          angle: 45,
+          spread: 80,
+          origin: { x: 0.2, y: 0.6 },
           colors: colors
         });
         confetti({
-          particleCount: 4,
-          angle: 120,
-          spread: 55,
-          origin: { x: 1 },
+          particleCount: 80,
+          angle: 135,
+          spread: 80,
+          origin: { x: 0.8, y: 0.6 },
           colors: colors
         });
-        if (Date.now() < end) requestAnimationFrame(frame);
-      })();
+      }, 1500);
     }
   </script>
-
 </body>
 </html>
