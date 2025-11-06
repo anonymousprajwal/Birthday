@@ -15,14 +15,15 @@
       padding: 0;
       text-align: center;
       overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     header {
-      padding: 50px 20px 30px;
-      min-height: 50vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      padding: 50px 20px;
+      width: 100%;
     }
 
     h1 {
@@ -32,6 +33,11 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+    }
+
+    h1 .emoji {
+      -webkit-text-fill-color: initial;
+      background: none;
     }
 
     h2 {
@@ -82,152 +88,6 @@
       color: #ffc1e3;
     }
 
-    /* Secret Code Section */
-    .secret-code-section {
-      padding: 40px 20px;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    .secret-box {
-      background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 8px 30px rgba(255, 107, 157, 0.4);
-      border: 2px solid #ff6b9d;
-    }
-
-    .secret-box h3 {
-      color: #ff6b9d;
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
-
-    .secret-box p {
-      color: #ffc1e3;
-      margin-bottom: 20px;
-    }
-
-    .lock-icon {
-      font-size: 3rem;
-      margin-bottom: 15px;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .secret-input {
-      width: 100%;
-      padding: 15px;
-      border: 2px solid #ff6b9d;
-      border-radius: 10px;
-      background: #1a1a1a;
-      color: #fff;
-      font-size: 1rem;
-      margin-bottom: 15px;
-      box-sizing: border-box;
-      transition: all 0.3s;
-    }
-
-    .secret-input:focus {
-      outline: none;
-      border-color: #ffc1e3;
-      box-shadow: 0 0 15px rgba(255, 107, 157, 0.5);
-    }
-
-    .secret-btn {
-      width: 100%;
-      padding: 15px;
-      background: linear-gradient(45deg, #ff6b9d, #ff8fb3);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .secret-btn:hover {
-      background: linear-gradient(45deg, #ff8fb3, #ffaac9);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(255, 107, 157, 0.5);
-    }
-
-    .error-message {
-      color: #ff6b9d;
-      margin-top: 15px;
-      font-size: 0.9rem;
-      display: none;
-    }
-
-    .error-message.show {
-      display: block;
-      animation: shake 0.5s;
-    }
-
-    .success-message {
-      color: #7bff7b;
-      margin-top: 15px;
-      font-size: 0.9rem;
-      display: none;
-    }
-
-    .success-message.show {
-      display: block;
-      animation: fadeIn 0.5s;
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-10px); }
-      75% { transform: translateX(10px); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /* Hidden content that requires code */
-    .locked-content {
-      display: none;
-      opacity: 0;
-    }
-
-    .locked-content.unlocked {
-      display: block;
-      animation: fadeInUp 1s ease forwards;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .hidden-content {
-      display: none;
-      opacity: 0;
-    }
-
-    .reveal {
-      display: block !important;
-      animation: fadeInUp 1s ease forwards;
-    }
-
-    section {
-      padding: 60px 20px;
-    }
-
     .celebration-header {
       animation: bounceIn 1s ease;
     }
@@ -236,86 +96,6 @@
       0% { transform: scale(0); opacity: 0; }
       50% { transform: scale(1.1); }
       100% { transform: scale(1); opacity: 1; }
-    }
-
-    .memories img {
-      width: 200px;
-      border-radius: 15px;
-      margin: 10px;
-      transition: transform 0.3s;
-      border: 3px solid #ff6b9d;
-      box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
-    }
-
-    .memories img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 25px rgba(255, 107, 157, 0.6);
-    }
-
-    .memories h2, .music h2 {
-      color: #ff6b9d;
-    }
-
-    .memories p, .music p {
-      color: #ffc1e3;
-    }
-
-    .quiz {
-      max-width: 500px;
-      margin: 0 auto;
-      text-align: left;
-      background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
-      padding: 25px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(255, 107, 157, 0.3);
-      border: 2px solid #ff6b9d;
-    }
-
-    .quiz h2 {
-      color: #ff6b9d;
-    }
-
-    .quiz p {
-      color: #ffc1e3;
-    }
-
-    .quiz button {
-      margin-top: 10px;
-      background: linear-gradient(45deg, #ff6b9d, #ff8fb3);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      padding: 10px 20px;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: all 0.3s;
-    }
-
-    .quiz button:hover {
-      background: linear-gradient(45deg, #ff8fb3, #ffaac9);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(255, 107, 157, 0.5);
-    }
-
-    footer {
-      background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
-      padding: 20px;
-      margin-top: 40px;
-      border-top: 2px solid #ff6b9d;
-    }
-
-    footer h3 {
-      color: #ff6b9d;
-    }
-
-    footer p {
-      color: #ffc1e3;
-    }
-
-    audio {
-      margin-top: 20px;
-      filter: invert(1) hue-rotate(180deg);
     }
 
     @media (max-width: 600px) {
@@ -327,9 +107,8 @@
 </head>
 <body>
 
-  <!-- HEADER WITH COUNTDOWN (VISIBLE TO EVERYONE) -->
   <header>
-    <h1>🎂 Happy Birthday, Sara! 🎉</h1>
+    <h1><span class="emoji">🎂</span> Happy Birthday, Sara! <span class="emoji">🎉</span></h1>
     <h2>Countdown to your special day</h2>
     <div class="countdown">
       <div class="time-box">
@@ -347,114 +126,13 @@
     </div>
   </header>
 
-  <!-- SECRET CODE SECTION (VISIBLE TO EVERYONE) -->
-  <div class="secret-code-section" id="secretCodeSection">
-    <div class="secret-box">
-      <div class="lock-icon">🔐</div>
-      <h3>Unlock Secret Content</h3>
-      <p>Enter the special code to reveal the surprise! 💝</p>
-      <input 
-        type="password" 
-        class="secret-input" 
-        id="secretInput" 
-        placeholder="Enter secret code..."
-        autocomplete="off"
-      >
-      <button class="secret-btn" onclick="unlockContent()">Unlock 🎁</button>
-      <p class="error-message" id="errorMsg">❌ Wrong code! Try again.</p>
-      <p class="success-message" id="successMsg">✅ Unlocked! Scroll down to see the surprise! 🎉</p>
-    </div>
-  </div>
-
-  <!-- LOCKED CONTENT (REQUIRES SECRET CODE) -->
-  <div class="locked-content" id="lockedContent">
-    <!-- MEMORIES -->
-    <section class="memories hidden-content" id="memories">
-      <h2>📸 Memory Lane</h2>
-      <p>Some of our favorite moments together 💖</p>
-      <div>
-        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400" alt="Memory 1">
-        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=401" alt="Memory 2">
-        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=402" alt="Memory 3">
-      </div>
-    </section>
-
-    <!-- MUSIC -->
-    <section class="music hidden-content" id="music">
-      <h2>🎵 Sara's Favorite Vibes</h2>
-      <p>Turn up the birthday energy!</p>
-      <audio controls loop id="birthdayAudio">
-        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_0b59b207a8.mp3?filename=happy-birthday-to-you-12214.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-      </audio>
-    </section>
-
-    <!-- QUIZ -->
-    <section class="quiz hidden-content" id="quiz">
-      <h2>🧠 Birthday Quiz</h2>
-      <p>How well do you know Sara?</p>
-      <p id="question">What is Sara's favorite color?</p>
-      <button onclick="nextQuestion(1)">Pink 💖</button>
-      <button onclick="nextQuestion(0)">Blue 💙</button>
-      <button onclick="nextQuestion(0)">Green 💚</button>
-      <p id="result"></p>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="hidden-content" id="footer">
-      <h3>Made with ❤️ by Prajwal</h3>
-      <p>Hope you have the best birthday ever!</p>
-    </footer>
-  </div>
-
   <script>
-    // Start countdown immediately (visible to everyone)
     const timer = setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    let isUnlocked = false;
-
-    // Unlock secret content with code
-    function unlockContent() {
-      const input = document.getElementById('secretInput');
-      const code = input.value;
-      const errorMsg = document.getElementById('errorMsg');
-      const successMsg = document.getElementById('successMsg');
-      
-      if (code === 'sarakapj') {
-        isUnlocked = true;
-        successMsg.classList.add('show');
-        errorMsg.classList.remove('show');
-        input.disabled = true;
-        
-        // Show locked content
-        document.getElementById('lockedContent').classList.add('unlocked');
-        
-        // Scroll to the content smoothly
-        setTimeout(() => {
-          document.getElementById('lockedContent').scrollIntoView({ behavior: 'smooth' });
-        }, 500);
-      } else {
-        errorMsg.classList.add('show');
-        successMsg.classList.remove('show');
-        input.value = '';
-        setTimeout(() => {
-          errorMsg.classList.remove('show');
-        }, 3000);
-      }
-    }
-
-    // Allow Enter key to submit
-    document.getElementById('secretInput').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        unlockContent();
-      }
-    });
-
-    // Countdown logic - Set to November 10, 2025
     function updateCountdown() {
       const now = new Date();
-      const targetDate = new Date(2025, 10, 10, 0, 0, 0); // Month is 0-indexed, so 10 = November
+      const targetDate = new Date(2025, 10, 10, 0, 0, 0);
 
       const diff = targetDate - now;
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -467,35 +145,16 @@
       document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
       document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
 
-      // When the countdown hits zero AND content is unlocked
-      if (diff <= 0 && isUnlocked) {
+      if (diff <= 0) {
         clearInterval(timer);
         document.querySelector("header").innerHTML = `
-          <h1 class="celebration-header">🎉 Happy Birthday Sara! 🎂</h1>
+          <h1 class="celebration-header"><span class="emoji">🎉</span> Happy Birthday Sara! <span class="emoji">🎂</span></h1>
           <h2 class="celebration-header">It's your special day! 💖</h2>
         `;
         launchConfetti();
-        revealContent();
       }
     }
 
-    // Reveal all hidden content with staggered animation
-    function revealContent() {
-      const sections = ['memories', 'music', 'quiz', 'footer'];
-      sections.forEach((id, index) => {
-        setTimeout(() => {
-          document.getElementById(id).classList.add('reveal');
-        }, index * 400);
-      });
-      
-      // Auto-play birthday music
-      setTimeout(() => {
-        const audio = document.getElementById('birthdayAudio');
-        audio.play().catch(err => console.log('Audio autoplay prevented'));
-      }, 1000);
-    }
-
-    // Confetti celebration with rose colors
     function launchConfetti() {
       const duration = 5000;
       const end = Date.now() + duration;
@@ -517,32 +176,6 @@
         });
         if (Date.now() < end) requestAnimationFrame(frame);
       })();
-    }
-
-    // Simple quiz
-    let score = 0;
-    function nextQuestion(correct) {
-      if (correct) {
-        score++;
-        document.getElementById("result").textContent = "✅ Correct! You know Sara well!";
-      } else {
-        document.getElementById("result").textContent = "❌ Not quite! Try again!";
-      }
-      setTimeout(() => {
-        document.getElementById("question").textContent = "What's Sara's favorite dessert?";
-        document.querySelectorAll(".quiz button").forEach((btn, i) => {
-          btn.textContent = ["Chocolate Cake 🍫", "Ice Cream 🍦", "Cookies 🍪"][i];
-          btn.setAttribute("onclick", `finishQuiz(${i === 0 ? 1 : 0})`);
-        });
-      }, 1000);
-    }
-
-    function finishQuiz(correct) {
-      if (correct) score++;
-      document.querySelector(".quiz").innerHTML = `
-        <h2>🎉 Quiz Complete!</h2>
-        <p>You got ${score} out of 2 right!</p>
-      `;
     }
   </script>
 
